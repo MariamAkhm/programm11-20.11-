@@ -10,9 +10,8 @@ namespace programm11_20._11_
     {
         static void Main(string[] args)
         {
-         
-
-            
+            decimal balance = Convert.ToDecimal(Console.Read());
+            Fabric.CreateAccount(balance, Type.Saving);       
         }
     }
 }
