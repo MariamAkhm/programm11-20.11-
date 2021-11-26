@@ -55,11 +55,6 @@ namespace programm11_20._11_
         }
         public void Deposit(decimal sum)
         {
-            Console.WriteLine("Введите сумму");
-            while (!decimal.TryParse(Console.ReadLine(), out sum))
-            {
-                Console.WriteLine("Неверный ввод, попробуйте еще раз");
-            }
             balance += sum;
         }
         public void PrintInfo()

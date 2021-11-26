@@ -15,6 +15,8 @@ namespace programm11_20._11_
         {
             hashtable = new Hashtable();
         }
+
+
         public static void CreateAccount()
         {
             BankAccount bankAccount = new BankAccount();
@@ -35,7 +37,7 @@ namespace programm11_20._11_
         }
         public static void CreateAccount(decimal balance, Type accountType)
         {
-            BankAccount bankAccount = new BankAccount(balance,accountType);
+            BankAccount bankAccount = new BankAccount(balance, accountType);
             bankAccount.ID();
             hashtable.Add(SHA256.Create(), bankAccount);
         }
