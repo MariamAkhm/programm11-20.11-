@@ -45,7 +45,5 @@ namespace programm11_20._11_
         {
             hashtable.Remove(id);
         }
-
-
     }
 }

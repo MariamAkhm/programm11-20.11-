@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.Office.Interop.Excel;
 
 
 namespace Class
@@ -98,19 +99,43 @@ namespace Class
                             }
                         }
                     File.AppendAllText("Result.txt", info+"\n");
-                    File.AppendAllLines("Result.txt", winners);
-                    
-
+                    File.AppendAllLines("Result.txt", winners);  
                     Console.Clear();
-                    
 
+                    Console.WriteLine("Excel");
+                    Application excelApp = new Application();
+                    Workbook workBook = excelApp.Workbooks.Open($"{Environment.CurrentDirectory}\\ill.xlsx");
+                    Worksheet workSheet = workBook.Worksheets[1];
+                    object[,] position = workSheet.Range["A2", "B10"].Value2; //берем значение каждой позиции
+                    Dictionary<string, string> illness = new Dictionary<string, string>(); //Словарь для ключ болезень - значение Лекарство
+                    for (int i = 1; i <= position.GetLength(0); i++)
+                    {
+                        illness.Add(position[i, 1].ToString().ToLower(), position[i, 2].ToString());
+                    }
+                    workBook.Close();
+                    workBook = excelApp.Workbooks.Open($"{Environment.CurrentDirectory}\\list.xlsx");
+                    workSheet = workBook.Worksheets[1];
+                    position = workSheet.Range["G2", "G35"].Value2; // Изменяем словарь
+                    for (int i = 1; i <= position.Length; i++)
+                    {
+                        string convertation = position[i, 1].ToString().ToLower();
+                        foreach (var pair in illness)
+                        {
+                            if (convertation.Contains(pair.Key))
+                            {
+                                position[i, 1] = pair.Value;
+                                break;
+                            }
+                        }
+                    }
+                    workSheet.Range["H2", "H35"].Value2 = position;
+                    workBook.Save();
+                    workBook.Close();
+                    excelApp.Quit();
+                    Console.ReadKey();
 
                 }
             }
-
-        }
-
-        
-        
+        }       
     }
 }

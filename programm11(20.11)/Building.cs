@@ -105,16 +105,5 @@ namespace programm11_20._11_
                 }
                 return apartOfFloors;
             }
-            public void PrintValues()
-            {
-                Console.WriteLine("Номер здания"+ number);
-                Console.WriteLine("Высота здания"+ height);
-                Console.WriteLine("Кол-во этажей в здании"+ countOfFloors);
-                Console.WriteLine("Кол-во квартир в здании"+ countOfApartments);
-                Console.WriteLine("Кол-во подъездов в здании" +countOfEntrances);
-                Console.WriteLine("Высота одного этажа"+ HeightFloor(height, countOfFloors));
-                Console.WriteLine("Кол-во квартир в подъезде" +CountApartmentsInEntrance(countOfApartments, countOfEntrances));
-                Console.WriteLine("Кол-во квартир на этаже" +CountApartmentsOnFloor(countOfApartments, countOfFloors));
-            }
     }
 }
